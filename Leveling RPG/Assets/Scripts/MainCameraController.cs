@@ -6,17 +6,17 @@ public class MainCameraController : MonoBehaviour
 {
     public GameObject target;
     public float speed;
-    private float distance;
+    private float yDistance;
+    private float zDistance;
 
     private Vector3 pos;
 
-
-    void Start()
+    private void Start()
     {
-        distance = target.transform.position.z - transform.position.z;
+        yDistance = transform.position.y - target.transform.position.y;
+        zDistance = target.transform.position.z - transform.position.z;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         CameraFollow();
@@ -24,7 +24,7 @@ public class MainCameraController : MonoBehaviour
 
     void CameraFollow()
     {
-        pos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z - distance);
+        pos = new Vector3(target.transform.position.x, target.transform.position.y + yDistance, target.transform.position.z - zDistance);
         transform.position = Vector3.Lerp(transform.position, pos, speed * Time.deltaTime);
     }
 }
