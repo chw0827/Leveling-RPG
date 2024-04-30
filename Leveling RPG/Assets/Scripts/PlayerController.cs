@@ -6,11 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed;
 
-    private float distance = 2f;
-    private int groundLayer = 6;
-    private RaycastHit slopeHit;
-
-    void Update()
+    private void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");

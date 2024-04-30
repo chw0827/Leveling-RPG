@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ToField : MonoBehaviour
+public class Potal : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
-        {
             SceneManager.LoadScene("Field");
-            DontDestroyOnLoad(other);
-        }
     }
 }

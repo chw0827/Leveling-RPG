@@ -28,4 +28,9 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
+
+    public void DontDestroyCheck()
+    {
+
+    }
 }
