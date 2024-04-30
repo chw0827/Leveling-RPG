@@ -6,18 +6,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public static GameManager Instance
-    {
-        get
-        {
-            if (!instance)
-            {
-                instance = FindObjectOfType(typeof(GameManager)) as GameManager;
-            }
-            return instance;
-        } 
-    }
-
     private void Awake()
     {
         if (instance == null)
@@ -27,10 +15,5 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-    }
-
-    public void DontDestroyCheck()
-    {
-
     }
 }
