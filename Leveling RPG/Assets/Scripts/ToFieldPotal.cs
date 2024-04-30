@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Potal : MonoBehaviour
+public class ToFieldPotal : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
