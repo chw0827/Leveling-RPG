@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ToFieldPotal : MonoBehaviour
+public class Potal : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
@@ -15,8 +15,20 @@ public class ToFieldPotal : MonoBehaviour
 
     IEnumerator FieldPotalMove()
     {
+        string nowScene = SceneManager.GetActiveScene().name;
+
         yield return new WaitForSeconds(0.5f);
 
-        SceneManager.LoadScene("Field");
+        switch (nowScene)
+        {
+            case "Village":
+                SceneManager.LoadScene("Field");
+                break;
+            case "Field":
+                SceneManager.LoadScene("Village");
+                break;
+            default:
+                break;
+        }
     }
 }
