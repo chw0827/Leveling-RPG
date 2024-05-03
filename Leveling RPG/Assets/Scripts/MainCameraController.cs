@@ -6,25 +6,37 @@ public class MainCameraController : MonoBehaviour
 {
     public GameObject target;
     public float speed;
-    private float yDistance;
-    private float zDistance;
+    public float height;
+    public float zDistance;
+
+    private float playerX;
+    private float playerY;
+    private float playerZ;
 
     private Vector3 pos;
 
     private void Start()
     {
-        yDistance = transform.position.y - target.transform.position.y;
-        zDistance = target.transform.position.z - transform.position.z;
+        DistanceCheck();
+        transform.position = pos;
     }
-
     void FixedUpdate()
     {
+        DistanceCheck();
         CameraFollow();
     }
 
     void CameraFollow()
     {
-        pos = new Vector3(target.transform.position.x, target.transform.position.y + yDistance, target.transform.position.z - zDistance);
         transform.position = Vector3.Lerp(transform.position, pos, speed * Time.deltaTime);
+    }
+
+    void DistanceCheck()
+    {
+        playerX = target.transform.position.x;
+        playerY = target.transform.position.y + height;
+        playerZ = target.transform.position.z - zDistance;
+
+        pos = new Vector3(playerX, playerY, playerZ);
     }
 }

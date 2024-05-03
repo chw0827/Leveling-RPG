@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
 {
     public PlayerState playerstate;
     public float speed;
+    public Animator anim;
+
+    private Vector3 look;
 
     private void FixedUpdate()
     {
@@ -32,11 +35,18 @@ public class PlayerController : MonoBehaviour
         {
             if (x != 0 || z != 0)
             {
-                transform.Translate(new Vector3(x, 0, z) * speed * Time.deltaTime);
+                look = (Vector3.right * x) + (Vector3.forward * z);
+                transform.rotation = Quaternion.LookRotation(look);
+
+                transform.Translate(Vector3.forward * speed * Time.deltaTime);
                 playerstate = PlayerState.Move;
+                anim.SetBool("move", true);
             }
             else
+            {
                 playerstate = PlayerState.Idle;
+                anim.SetBool("move", false);
+            }
         }
     }
 
