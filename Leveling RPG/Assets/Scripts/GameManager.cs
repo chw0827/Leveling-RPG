@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public Animator anim;
+
     private void Awake()
     {
         if (instance == null)
@@ -15,5 +17,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void SceneChangeEffect()
+    {
+        anim.SetTrigger("sceneMove");
     }
 }

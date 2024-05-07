@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator PotalWait()
     {
         playerstate = PlayerState.Wait;
+        anim.SetBool("move", false);
 
         yield return new WaitForSeconds(1f);
 

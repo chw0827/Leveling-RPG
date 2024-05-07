@@ -16,6 +16,7 @@ public class Potal : MonoBehaviour
     IEnumerator FieldPotalMove()
     {
         string nowScene = SceneManager.GetActiveScene().name;
+        GameManager.instance.SceneChangeEffect();
 
         yield return new WaitForSeconds(0.5f);
 
