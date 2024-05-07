@@ -1691,19 +1691,39 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1140329217071733238, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1140329217071733238, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1140329217071733238, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: m_Size.x
+      value: 18.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1140329217071733238, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: m_Size.y
+      value: 14.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1140329217071733238, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 71a044ae2608af7468c069452b8ca3f2, type: 3}
     - target: {fileID: 1140329217071733238, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1140329217071733238, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1140329217071733238, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1140329217071733238, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4745713566598252676, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
