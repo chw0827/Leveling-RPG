@@ -268,6 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 199253504}
   - component: {fileID: 199253503}
+  - component: {fileID: 199253505}
   m_Layer: 0
   m_Name: IncounterZone 2
   m_TagString: Untagged
@@ -303,6 +304,21 @@ Transform:
   m_Father: {fileID: 1161078747}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -22.266, z: 5}
+--- !u!114 &199253505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199253502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70508446bf1318e449ee75a737456ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 390520105}
+  playerMoveDistance: 0
+  minMoveDistance: 0
 --- !u!1 &232947171
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,16 +1008,44 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.53
+      value: 2.5299988
       objectReference: {fileID: 0}
     - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.05
+      value: 0.05000019
       objectReference: {fileID: 0}
     - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.63
+      value: -1.6300001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 1.4551915e-10
       objectReference: {fileID: 0}
     - target: {fileID: 4745713566598252676, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
       propertyPath: m_RootOrder
@@ -1186,6 +1230,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2145648587}
   - component: {fileID: 2145648586}
+  - component: {fileID: 2145648588}
   m_Layer: 0
   m_Name: IncounterZone
   m_TagString: Untagged
@@ -1221,3 +1266,18 @@ Transform:
   m_Father: {fileID: 1161078747}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.042, y: 14.182, z: -0.977}
+--- !u!114 &2145648588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145648585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70508446bf1318e449ee75a737456ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 390520105}
+  playerMoveDistance: 0
+  minMoveDistance: 0

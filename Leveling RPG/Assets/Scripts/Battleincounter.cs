@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Battleincounter : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject player;
 
-    // Update is called once per frame
-    void Update()
+    private Vector3 nowPlayerPosition;
+    public float playerMoveDistance;
+    public float minMoveDistance;
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other == player)
+        {
+            nowPlayerPosition = player.transform.position;
+        } 
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other == player)
+        {
+            playerMoveDistance = Vector3.Distance(nowPlayerPosition, nowPlayerPosition);
+        }
     }
 }
