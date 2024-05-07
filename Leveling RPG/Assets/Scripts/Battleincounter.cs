@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class Battleincounter : MonoBehaviour
 {
-    public GameObject player;
-
     private Vector3 nowPlayerPosition;
     public float playerMoveDistance;
     public float minMoveDistance;
+    public int moveCount;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other == player)
+        if (other.gameObject.CompareTag("Player"))
         {
-            nowPlayerPosition = player.transform.position;
+            nowPlayerPosition = other.transform.position;
         } 
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other == player)
+        if (other.gameObject.CompareTag("Player"))
         {
-            playerMoveDistance = Vector3.Distance(nowPlayerPosition, nowPlayerPosition);
+
+            if (other.transform.position != nowPlayerPosition)
         }
     }
 }
