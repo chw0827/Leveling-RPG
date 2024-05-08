@@ -28,6 +28,9 @@ public class Potal : MonoBehaviour
             case "Field":
                 SceneManager.LoadScene("Village");
                 break;
+            case "Battle":
+                SceneManager.LoadScene("Field");
+                break;
             default:
                 break;
         }

@@ -23,16 +23,16 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PlayerMove();
+        PlayerMove();   
     }
 
     private void PlayerMove()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        float z = Input.GetAxisRaw("Vertical");
-
         if (playerstate != PlayerState.Wait)
         {
+            float x = Input.GetAxisRaw("Horizontal");
+            float z = Input.GetAxisRaw("Vertical");
+
             if (x != 0 || z != 0)
             {
                 look = (Vector3.right * x) + (Vector3.forward * z);
