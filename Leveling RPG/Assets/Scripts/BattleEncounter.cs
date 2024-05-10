@@ -5,12 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class BattleEncounter : MonoBehaviour
 {
-    public GameObject player;
+    GameObject player;
+    private Vector3 lastPlayerPosition;
+
     public int encouterPercent;
     private Vector3 nowPlayerPosition;
     private Vector3 transPlayerPosition;
     private float playerMoveDistance;
-    private bool playerOutCheck; 
+    private bool playerOutCheck;
+
+    private void Start()
+    {
+        player = GameManager.instance.player;
+        if (GameManager.instance.beforeSceneName != "Battle")
+            return;
+
+        player.transform.position = LastPlayerStandingLoad();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -48,6 +59,8 @@ public class BattleEncounter : MonoBehaviour
 
             if (Random.Range(0, encouterPercent) == 0)
             {
+                LastPlayerStanding();
+
                 GameManager.instance.SceneChangeEffect();
 
                 yield return new WaitForSeconds(0.5f);
@@ -57,5 +70,23 @@ public class BattleEncounter : MonoBehaviour
             }
             encouterPercent--;
         }
+    }
+
+    public void LastPlayerStanding()
+    {
+        lastPlayerPosition = player.transform.position;
+        PlayerPrefs.SetFloat("PlayerX", lastPlayerPosition.x);
+        PlayerPrefs.SetFloat("PlayerY", lastPlayerPosition.y);
+        PlayerPrefs.SetFloat("PlayerZ", lastPlayerPosition.z);
+        PlayerPrefs.Save();
+    }
+
+    public Vector3 LastPlayerStandingLoad()
+    {
+        lastPlayerPosition.x = PlayerPrefs.GetFloat("PlayerX");
+        lastPlayerPosition.y = PlayerPrefs.GetFloat("PlayerY");
+        lastPlayerPosition.z = PlayerPrefs.GetFloat("PlayerZ");
+
+        return lastPlayerPosition;
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MinimapCamera : MonoBehaviour
 {
-    public GameObject player;
-
     private float playerX;
     private float playerZ;
 
@@ -25,6 +23,8 @@ public class MinimapCamera : MonoBehaviour
 
     void CameraFollow()
     {
+        GameObject player = GameManager.instance.player;
+
         playerX = player.transform.position.x;
         positionY = transform.position.y;
         playerZ = player.transform.position.z;

@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public GameObject player;
+
+    public string nowSceneName;
+    public string beforeSceneName;
+
     public TMP_Text moneyDisplay;
     public int moneyHave;
 
@@ -29,11 +34,6 @@ public class GameManager : MonoBehaviour
         MoneyUpdate();
     }
 
-    private void Update()
-    {
-        MoneyUpdate();
-    }
-
     public void SceneChangeEffect()
     {
         anim.SetTrigger("sceneMove");
@@ -42,5 +42,17 @@ public class GameManager : MonoBehaviour
     public void MoneyUpdate()
     {
         moneyDisplay.text = $"{moneyHave}";
+        PlayerPrefs.SetInt("Money", moneyHave);
+        PlayerPrefs.Save();
+    }
+
+    public void NowSceneReport()
+    {
+        nowSceneName = SceneManager.GetActiveScene().name;
+    }
+
+    public void BeforeSceneReport()
+    {
+        beforeSceneName = SceneManager.GetActiveScene().name;
     }
 }

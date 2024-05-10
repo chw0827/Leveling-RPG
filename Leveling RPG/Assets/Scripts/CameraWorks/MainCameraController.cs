@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MainCameraController : MonoBehaviour
 {
-    public GameObject target;
     public float speed;
     public float height;
     public float zDistance;
@@ -33,9 +32,11 @@ public class MainCameraController : MonoBehaviour
 
     void DistanceCheck()
     {
-        playerX = target.transform.position.x;
-        playerY = target.transform.position.y + height;
-        playerZ = target.transform.position.z - zDistance;
+        GameObject player = GameManager.instance.player;
+
+        playerX = player.transform.position.x;
+        playerY = player.transform.position.y + height;
+        playerZ = player.transform.position.z - zDistance;
 
         pos = new Vector3(playerX, playerY, playerZ);
     }
