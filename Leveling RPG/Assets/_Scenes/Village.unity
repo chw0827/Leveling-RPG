@@ -183,14 +183,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2413484223406086797, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6965995820481447830, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
 --- !u!1 &338650881 stripped
