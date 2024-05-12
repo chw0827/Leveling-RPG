@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+
+        SceneManager.sceneLoaded += NowSceneReport; 
+        nowSceneName = SceneManager.GetActiveScene().name;
     }
 
     private void Start()
@@ -46,13 +49,9 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void NowSceneReport()
+    public void NowSceneReport(Scene scene, LoadSceneMode mode)
     {
-        nowSceneName = SceneManager.GetActiveScene().name;
-    }
-
-    public void BeforeSceneReport()
-    {
-        beforeSceneName = SceneManager.GetActiveScene().name;
+        beforeSceneName = nowSceneName;
+        nowSceneName = scene.name;
     }
 }

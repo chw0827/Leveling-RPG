@@ -10,9 +10,7 @@ public class Potal : MonoBehaviour
 
     private void Start()
     {
-        NowSceneCheck();
-        Debug.Log(nowScene);
-        Debug.Log(GameManager.instance.beforeSceneName);
+        nowScene = GameManager.instance.nowSceneName;
 
         if (GameManager.instance.beforeSceneName == "Battle")
             return;
@@ -24,7 +22,6 @@ public class Potal : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.BeforeSceneReport();
             StartCoroutine(PotalMove());
         }
     }
@@ -50,13 +47,7 @@ public class Potal : MonoBehaviour
 
     private void PlayerWarpSpot()
     {
-        GameObject player = GameObject.Find("Player");
+        GameObject player = GameManager.instance.player;
         player.transform.position = teleportPoint.transform.position;
-    }
-
-    private void NowSceneCheck()
-    {
-        GameManager.instance.NowSceneReport();
-        nowScene = GameManager.instance.nowSceneName;
     }
 }

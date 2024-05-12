@@ -17,6 +17,7 @@ public class BattleEncounter : MonoBehaviour
     private void Start()
     {
         player = GameManager.instance.player;
+
         if (GameManager.instance.beforeSceneName != "Battle")
             return;
 
@@ -27,9 +28,8 @@ public class BattleEncounter : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("In");
             StartCoroutine(RandomEncounter());
-        } 
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -51,7 +51,7 @@ public class BattleEncounter : MonoBehaviour
 
             transPlayerPosition = player.transform.position;
             playerMoveDistance = Vector3.Distance(nowPlayerPosition, transPlayerPosition);
-            
+
             if (playerMoveDistance == 0)
                 continue;
 
