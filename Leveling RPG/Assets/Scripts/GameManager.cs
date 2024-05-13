@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         SceneManager.sceneLoaded += NowSceneReport; 
-        nowSceneName = SceneManager.GetActiveScene().name;
     }
 
     private void Start()
