@@ -63,9 +63,9 @@ public class PlayerController : MonoBehaviour
 
         yield return new WaitForSeconds(0.6f);
 
-        transform.rotation = Quaternion.LookRotation(Vector3.zero + Vector3.forward);
+        transform.rotation = Quaternion.LookRotation(Vector3.forward);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.4f);
 
         playerstate = PlayerState.Idle;
     }

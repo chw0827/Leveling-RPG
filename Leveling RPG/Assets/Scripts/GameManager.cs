@@ -36,16 +36,16 @@ public class GameManager : MonoBehaviour
         MoneyUpdate();
     }
 
-    public void SceneChangeEffect()
-    {
-        anim.SetTrigger("sceneMove");
-    }
-
     public void MoneyUpdate()
     {
         moneyDisplay.text = $"{moneyHave}";
         PlayerPrefs.SetInt("Money", moneyHave);
         PlayerPrefs.Save();
+    }
+
+    public void SceneChangeEffect()
+    {
+        anim.SetTrigger("sceneMove");
     }
 
     public void NowSceneReport(Scene scene, LoadSceneMode mode)

@@ -59,9 +59,9 @@ public class BattleEncounter : MonoBehaviour
 
             if (Random.Range(0, encouterPercent) == 0)
             {
-                LastPlayerStanding();
-
                 GameManager.instance.SceneChangeEffect();
+
+                LastPlayerStanding();
 
                 yield return new WaitForSeconds(0.5f);
 
