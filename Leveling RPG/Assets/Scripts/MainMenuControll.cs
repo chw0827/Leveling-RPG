@@ -10,12 +10,21 @@ public class MainMenuControll : MonoBehaviour
     public Animator titleAnim;
     public Animator settingsAnim;
 
-    public Button settingsButton;
+    public Button settingsBtn;
+    public Slider volumeSld;
+    public Image volumeCancleLine;
 
     public TMP_Text settingsSaveTxt;
+    public TMP_Text settingsWarningTxt;
 
     public void GameStart()
     {
+        if (titleAnim.GetBool("titleUp"))
+        {
+            StartCoroutine(SettingsWarningText());
+            return;
+        }
+
         SceneManager.LoadScene("Village");
     }
 
@@ -44,26 +53,40 @@ public class MainMenuControll : MonoBehaviour
         StartCoroutine(SettingsSaveText());
     }
 
+    public void VolumeOnOff()
+    {
+        if (volumeCancleLine.enabled)
+        {
+            volumeCancleLine.enabled = false;
+            volumeSld.value = 1f;
+        }
+        else if (!volumeCancleLine.enabled)
+        {
+            volumeCancleLine.enabled = true;
+            volumeSld.value = 0f;
+        }
+    }
+
     IEnumerator InputSettings()
     {
-        settingsButton.interactable = false;
+        settingsBtn.interactable = false;
         titleAnim.SetBool("titleUp", true);
         yield return new WaitForSeconds(1f);
         settingsAnim.SetBool("settingsDown", true);
 
         yield return new WaitForSeconds(1f);
-        settingsButton.interactable = true;
+        settingsBtn.interactable = true;
     }
 
     IEnumerator CloseSettings()
     {
-        settingsButton.interactable = false;
+        settingsBtn.interactable = false;
         settingsAnim.SetBool("settingsDown", false);
         yield return new WaitForSeconds(1f);
         titleAnim.SetBool("titleUp", false);
 
         yield return new WaitForSeconds(1f);
-        settingsButton.interactable = true;
+        settingsBtn.interactable = true;
     }
 
     IEnumerator SettingsSaveText()
@@ -71,5 +94,12 @@ public class MainMenuControll : MonoBehaviour
         settingsSaveTxt.enabled = true;
         yield return new WaitForSeconds(2f);
         settingsSaveTxt.enabled = false;
+    }
+
+    IEnumerator SettingsWarningText()
+    {
+        settingsWarningTxt.enabled = true;
+        yield return new WaitForSeconds(2f);
+        settingsWarningTxt.enabled = false;
     }
 }
