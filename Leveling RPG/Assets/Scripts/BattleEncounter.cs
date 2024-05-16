@@ -40,7 +40,7 @@ public class BattleEncounter : MonoBehaviour
 
     IEnumerator RandomEncounter()
     {
-        encouterPercent = 100;
+        encouterPercent = 80;
         playerOutCheck = false;
 
         while (!playerOutCheck)
