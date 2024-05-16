@@ -16,6 +16,7 @@ public class MainMenuControll : MonoBehaviour
 
     public TMP_Text settingsSaveTxt;
     public TMP_Text settingsWarningTxt;
+    public TMP_Dropdown dropDown;
 
     public void GameStart()
     {
@@ -25,7 +26,7 @@ public class MainMenuControll : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene("Village");
+        StartCoroutine(StartGame());
     }
 
     public void InputSettingsBtn()
@@ -58,7 +59,7 @@ public class MainMenuControll : MonoBehaviour
         if (volumeCancleLine.enabled)
         {
             volumeCancleLine.enabled = false;
-            volumeSld.value = 1f;
+            volumeSld.value = 0.1f;
         }
         else if (!volumeCancleLine.enabled)
         {
@@ -67,6 +68,33 @@ public class MainMenuControll : MonoBehaviour
         }
     }
 
+    public void VolumeControll()
+    {
+        if (volumeSld.value == 0f)
+            volumeCancleLine.enabled = true;
+        else
+            volumeCancleLine.enabled = false;
+
+        PlayerPrefs.SetFloat("Volume", volumeSld.value);
+    }
+
+    public void DropDownResolution()
+    {
+        int value = dropDown.value;
+        if (value == 0)
+            Screen.fullScreen = true;
+        else if (value == 1)
+            Screen.fullScreen = false;
+
+        Debug.Log(Screen.fullScreen);
+    }
+
+    IEnumerator StartGame()
+    {
+        SceneChanger.instance.SceneChangeStart();
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene("Village");
+    }
     IEnumerator InputSettings()
     {
         settingsBtn.interactable = false;
