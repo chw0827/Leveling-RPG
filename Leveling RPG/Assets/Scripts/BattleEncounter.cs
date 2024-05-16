@@ -40,14 +40,14 @@ public class BattleEncounter : MonoBehaviour
 
     IEnumerator RandomEncounter()
     {
-        encouterPercent = 20;
+        encouterPercent = 100;
         playerOutCheck = false;
 
         while (!playerOutCheck)
         {
             nowPlayerPosition = player.transform.position;
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f);
 
             transPlayerPosition = player.transform.position;
             playerMoveDistance = Vector3.Distance(nowPlayerPosition, transPlayerPosition);
@@ -59,7 +59,7 @@ public class BattleEncounter : MonoBehaviour
 
             if (Random.Range(0, encouterPercent) == 0)
             {
-                GameManager.instance.SceneChangeEffect();
+                SceneChanger.instance.SceneChangeStart();
 
                 LastPlayerStanding();
 

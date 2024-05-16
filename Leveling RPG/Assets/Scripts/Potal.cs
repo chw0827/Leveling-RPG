@@ -28,7 +28,7 @@ public class Potal : MonoBehaviour
 
     IEnumerator PotalMove()
     {
-        GameManager.instance.SceneChangeEffect();
+        SceneChanger.instance.SceneChangeStart();
 
         yield return new WaitForSeconds(0.5f);
 

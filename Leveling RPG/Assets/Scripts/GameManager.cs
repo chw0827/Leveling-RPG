@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour
     public TMP_Text moneyDisplay;
     public int moneyHave;
 
-    public Animator anim;
-
     private void Awake()
     {
         if (instance == null)
@@ -41,11 +39,6 @@ public class GameManager : MonoBehaviour
         moneyDisplay.text = $"{moneyHave}";
         PlayerPrefs.SetInt("Money", moneyHave);
         PlayerPrefs.Save();
-    }
-
-    public void SceneChangeEffect()
-    {
-        anim.SetTrigger("sceneMove");
     }
 
     public void NowSceneReport(Scene scene, LoadSceneMode mode)
