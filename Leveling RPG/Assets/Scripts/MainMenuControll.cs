@@ -14,7 +14,6 @@ public class MainMenuControll : MonoBehaviour
     public Slider volumeSld;
     public Image volumeCancleLine;
 
-    public TMP_Text settingsSaveTxt;
     public TMP_Text settingsWarningTxt;
     public TMP_Dropdown dropDown;
 
@@ -44,14 +43,6 @@ public class MainMenuControll : MonoBehaviour
     public void CloseSettingsBtn()
     {
         StartCoroutine(CloseSettings());
-    }
-
-    public void SaveSettingsBtn()
-    {
-        if (settingsSaveTxt.enabled)
-            return;
-
-        StartCoroutine(SettingsSaveText());
     }
 
     public void VolumeOnOff()
@@ -85,8 +76,6 @@ public class MainMenuControll : MonoBehaviour
             Screen.fullScreen = true;
         else if (value == 1)
             Screen.fullScreen = false;
-
-        Debug.Log(Screen.fullScreen);
     }
 
     IEnumerator StartGame()
@@ -115,13 +104,6 @@ public class MainMenuControll : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         settingsBtn.interactable = true;
-    }
-
-    IEnumerator SettingsSaveText()
-    {
-        settingsSaveTxt.enabled = true;
-        yield return new WaitForSeconds(2f);
-        settingsSaveTxt.enabled = false;
     }
 
     IEnumerator SettingsWarningText()
