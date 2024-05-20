@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum BattleState
 {
@@ -10,7 +11,6 @@ public enum BattleState
 
 public class BattleManager : MonoBehaviour
 {
-
     public BattleState battleState;
     public bool enemyAlive;
     public bool playerAlive;

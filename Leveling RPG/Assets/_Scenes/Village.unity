@@ -502,6 +502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 338650881}
+  uI: {fileID: 368334155}
   nowSceneName: 
   beforeSceneName: 
   moneyDisplay: {fileID: 7569913640143278263}

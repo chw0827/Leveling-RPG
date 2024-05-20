@@ -12,16 +12,20 @@ public class PlayerController : MonoBehaviour
     public PlayerState playerstate;
     public float speed;
     public Animator anim;
+    public string nowScene;
 
     private Vector3 look;
 
+    private void Start()
+    {
+        nowScene = GameManager.instance.nowSceneName;
+        BattleReady();
+    }
+
     private void FixedUpdate()
     {
-        if (GameManager.instance.nowSceneName == "Battle")
-        {
-            playerstate = PlayerState.BattleIdle;
+        if (nowScene == "Battle")
             return;
-        }
 
         PlayerMove();   
     }
@@ -48,6 +52,12 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("move", false);
             }
         }
+    }
+
+    void BattleReady()
+    {
+        if (nowScene == "Battle")
+            playerstate = PlayerState.BattleIdle;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameObject player;
+    public GameObject uI;
 
     public string nowSceneName;
     public string beforeSceneName;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        FieldUIDisable();
         MoneyUpdate();
     }
 
@@ -45,5 +47,13 @@ public class GameManager : MonoBehaviour
     {
         beforeSceneName = nowSceneName;
         nowSceneName = scene.name;
+    }
+
+    void FieldUIDisable()
+    {
+        if (nowSceneName == "Battle")
+            uI.SetActive(false);
+        else
+            uI.SetActive(true);
     }
 }
