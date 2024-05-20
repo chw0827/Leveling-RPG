@@ -5,6 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
+    public enum BattleState
+    {
+        Start, Playerturn, Enemyturn, Win, Defeat
+    }
+
+    public bool enemyAlive;
+    public bool playerAlive;
+
+    private void Start()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

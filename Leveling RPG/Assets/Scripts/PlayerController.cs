@@ -4,13 +4,7 @@ using UnityEngine;
 
 public enum PlayerState
 {
-    Idle,
-    Wait,
-    Move,
-    BattleIdle,
-    Attack,
-    Hit,
-    Dead
+    Idle, Wait, Move, BattleIdle, Attack, Hit, Dead
 }
 
 public class PlayerController : MonoBehaviour
@@ -23,6 +17,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.instance.nowSceneName == "Battle")
+        {
+            playerstate = PlayerState.BattleIdle;
+            return;
+        }
+
         PlayerMove();   
     }
 
