@@ -3,26 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum BattleState
+{
+    Start, Playerturn, Enemyturn, Win, Defeat
+}
+
 public class BattleManager : MonoBehaviour
 {
-    public enum BattleState
-    {
-        Start, Playerturn, Enemyturn, Win, Defeat
-    }
 
+    public BattleState battleState;
     public bool enemyAlive;
     public bool playerAlive;
 
-    private void Start()
+    public GameObject bear;
+
+    public Transform playerStand;
+    public Transform enemyStand;
+
+    private void Awake()
     {
-        
+        BattleStart();
     }
 
-    private void OnTriggerEnter(Collider other)
+    void BattleStart()
     {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            SceneManager.LoadScene("Field");
-        }
+        battleState = BattleState.Start;
+
+        Instantiate(bear).transform.position = enemyStand.position;
+        bear.transform.rotation = Quaternion.LookRotation(Vector3.forward);
+
+        GameObject player = GameObject.FindWithTag("Player");
+        player.transform.position = playerStand.position;
+        player.transform.rotation = Quaternion.LookRotation(Vector3.back);
     }
 }
