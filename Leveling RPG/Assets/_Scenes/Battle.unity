@@ -341,7 +341,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 24705871}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 347360749}
+        m_TargetAssemblyTypeName: BattleManager, Assembly-CSharp
+        m_MethodName: BattleRun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &24705871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,6 +898,7 @@ MonoBehaviour:
   bear: {fileID: 7962199819078159310, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
   playerStand: {fileID: 1979941875}
   enemyStand: {fileID: 189371707}
+  battleLog: {fileID: 398635200}
 --- !u!4 &347360750
 Transform:
   m_ObjectHideFlags: 0
