@@ -1913,8 +1913,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7292658344771522932}
   - component: {fileID: 3734775969355451150}
-  - component: {fileID: 3021941211617173439}
   - component: {fileID: -97861678968561310}
+  - component: {fileID: 3021941211617173439}
   m_Layer: 0
   m_Name: Bear_4
   m_TagString: Untagged
@@ -1929,7 +1929,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7962199819078159310}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0, w: -1}
   m_LocalPosition: {x: -3.882, y: 0.5, z: -2.343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1938,7 +1938,7 @@ Transform:
   - {fileID: 8036338751982688932}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -203.71999, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -360, z: 0}
 --- !u!95 &3734775969355451150
 Animator:
   serializedVersion: 5
@@ -1960,6 +1960,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-97861678968561310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962199819078159310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2e29f109fc459c42b59a77bd28f5770, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 3734775969355451150}
+  unitName: "\uC0AC\uB098\uC6B4 \uACF0"
+  level: 1
+  attackP: 12
+  maxHp: 100
+  hp: 100
 --- !u!114 &3021941211617173439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,23 +1993,6 @@ MonoBehaviour:
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
     _objectReferences: []
---- !u!114 &-97861678968561310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7962199819078159310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2e29f109fc459c42b59a77bd28f5770, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitName: "\uC0AC\uB098\uC6B4 \uACF0"
-  level: 1
-  attackP: 12
-  maxHp: 100
-  hp: 100
 --- !u!1 &8002475675295336084
 GameObject:
   m_ObjectHideFlags: 0

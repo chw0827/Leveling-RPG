@@ -1019,7 +1019,12 @@ MonoBehaviour:
   bear: {fileID: 7962199819078159310, guid: f5b41ba4c79702547a89de7544b80656, type: 3}
   playerStand: {fileID: 1979941875}
   enemyStand: {fileID: 189371707}
+  PlayerHpBar: {fileID: 748286375}
   battleLog: {fileID: 398635200}
+  playerLv: {fileID: 71968765}
+  playerHpCount: {fileID: 1235661392}
+  playerName: {fileID: 2067913126}
+  playerAttackP: {fileID: 759572846}
 --- !u!4 &347360750
 Transform:
   m_ObjectHideFlags: 0
