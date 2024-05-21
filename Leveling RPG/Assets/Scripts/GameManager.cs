@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public GameObject player;
+    public PlayerController pc;
     public GameObject uI;
 
     public string nowSceneName;
@@ -28,11 +29,17 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         SceneManager.sceneLoaded += NowSceneReport; 
+        SceneManager.sceneLoaded += BattleSceneReady;  
     }
 
     private void Start()
     {
-        FieldUIDisable();
+        pc = player.GetComponent<PlayerController>();
+        moneyDisplay.text = $"{moneyHave}";
+    }
+
+    private void Update()
+    {
         MoneyUpdate();
     }
 
@@ -49,11 +56,15 @@ public class GameManager : MonoBehaviour
         nowSceneName = scene.name;
     }
 
-    void FieldUIDisable()
+    void BattleSceneReady(Scene scene, LoadSceneMode mode)
     {
-        if (nowSceneName == "Battle")
+        if (scene.name == "Battle")
+        {
             uI.SetActive(false);
+        }
         else
+        {
             uI.SetActive(true);
+        }
     }
 }

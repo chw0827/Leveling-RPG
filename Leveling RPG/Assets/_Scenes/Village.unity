@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2856209392929459026, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
+      propertyPath: hp
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
 --- !u!1 &338650881 stripped
@@ -502,6 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 338650881}
+  pc: {fileID: 0}
   uI: {fileID: 368334155}
   nowSceneName: 
   beforeSceneName: 

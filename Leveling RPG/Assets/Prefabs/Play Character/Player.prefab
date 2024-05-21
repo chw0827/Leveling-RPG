@@ -1455,8 +1455,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerstate: 0
+  playerName: "\uAE30\uC0AC"
   speed: 6
   anim: {fileID: 4457481247628736959}
+  nowScene: 
+  level: 1
+  attackP: 10
+  maxHp: 60
+  hp: 60
 --- !u!1 &1932260922175210537
 GameObject:
   m_ObjectHideFlags: 0

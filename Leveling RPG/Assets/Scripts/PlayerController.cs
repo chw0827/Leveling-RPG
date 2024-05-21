@@ -10,21 +10,20 @@ public enum PlayerState
 public class PlayerController : MonoBehaviour
 {
     public PlayerState playerstate;
+    public string playerName;
     public float speed;
     public Animator anim;
-    public string nowScene;
 
     private Vector3 look;
 
-    private void Start()
-    {
-        nowScene = GameManager.instance.nowSceneName;
-        BattleReady();
-    }
+    public int level;
+    public float attackP;
+    public float maxHp;
+    public float hp;
 
     private void FixedUpdate()
     {
-        if (nowScene == "Battle")
+        if (GameManager.instance.nowSceneName == "Battle")
             return;
 
         PlayerMove();   
@@ -54,12 +53,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void BattleReady()
-    {
-        if (nowScene == "Battle")
-            playerstate = PlayerState.BattleIdle;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Potal"))
@@ -78,5 +71,24 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
 
         playerstate = PlayerState.Idle;
+    }
+
+    public void GetHit(float damage)
+    {
+        if (hp <= 0)
+        {
+            Death();
+            return;
+        }
+
+        playerstate = PlayerState.Hit;
+        anim.SetTrigger("getHit");
+        hp -= damage;
+    }
+
+    public void Death()
+    {
+        playerstate = PlayerState.Dead;
+        anim.SetBool("death", true);
     }
 }
