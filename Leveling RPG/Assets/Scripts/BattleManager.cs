@@ -20,7 +20,7 @@ public class BattleManager : MonoBehaviour
     PlayerController pc;
 
     public GameObject bear;
-    Stat bearStat;
+    EnemyState bearStat;
 
     public Transform playerStand;
     public Transform enemyStand;
@@ -39,14 +39,19 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(BattleStart());
     }
 
-    IEnumerator BattleStart()
+    private void Update()
+    {
+        UIUpdate();
+    }
+
+    public IEnumerator BattleStart()
     {
         UnitSetting();
         UIUpdate();
 
         battleLog.text = $"{bearStat.unitName}이(가) 나타났다!";
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
         WhosTurnNow();
     }
 
@@ -54,12 +59,10 @@ public class BattleManager : MonoBehaviour
     {
         player = GameManager.instance.player;
         pc = GameManager.instance.pc;
-        pc.playerstate = PlayerState.BattleIdle;
-        pc.anim.SetBool("battle", true);
         player.transform.position = playerStand.position;
         player.transform.rotation = Quaternion.LookRotation(Vector3.back);
 
-        bearStat = bear.GetComponent<Stat>();
+        bearStat = bear.GetComponent<EnemyState>();
         Instantiate(bear).transform.position = enemyStand.position;
         bear.transform.rotation = Quaternion.LookRotation(Vector3.forward);
     }
@@ -68,8 +71,8 @@ public class BattleManager : MonoBehaviour
     {
         PlayerHpBar.value = pc.hp / pc.maxHp;
         playerLv.text = $"Lv {pc.level}";
-        playerHpCount.text = $"{pc.hp}";
-        playerName.text = $"이름 : {pc.playerName}";
+        playerHpCount.text = $"HP : {pc.hp}";
+        playerName.text = $"이름 : {pc.characterName}";
         playerAttackP.text = $"공격력 : {pc.attackP}";
     }
 
@@ -82,7 +85,17 @@ public class BattleManager : MonoBehaviour
 
     public void BattleRun()
     {
-        pc.anim.SetBool("battle", false);
+        StartCoroutine(PantsRun());
+    }
+
+    IEnumerator PantsRun()
+    {
+        battleLog.text = "무사히 도망쳤다.";
+
+        yield return new WaitForSeconds(1f);
+        SceneChanger.instance.SceneChangeStart();
+
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(GameManager.instance.beforeSceneName);
     }
 
@@ -91,7 +104,7 @@ public class BattleManager : MonoBehaviour
         if (battleState != BattleState.Playerturn)
         {
             battleState = BattleState.Playerturn;
-            battleLog.text = $"{pc.playerName}의 차례. 무엇을 할까?";
+            battleLog.text = $"{pc.characterName}의 차례.\n무엇을 할까?";
             return;
         }
         battleState = BattleState.Enemyturn;

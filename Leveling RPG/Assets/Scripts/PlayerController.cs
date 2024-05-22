@@ -10,14 +10,15 @@ public enum PlayerState
 public class PlayerController : MonoBehaviour
 {
     public PlayerState playerstate;
-    public string playerName;
+    public string characterName;
     public float speed;
     public Animator anim;
 
     private Vector3 look;
 
+    public GameObject sword;
     public int level;
-    public float attackP;
+    public int attackP;
     public float maxHp;
     public float hp;
 
@@ -72,8 +73,23 @@ public class PlayerController : MonoBehaviour
 
         playerstate = PlayerState.Idle;
     }
+    
+    public void BattleModeSet(string SceneName)
+    {
+        if (SceneName == "Battle")
+        {
+            playerstate = PlayerState.BattleIdle;
+            anim.SetBool("battle", true);
+            sword.SetActive(true);
+            return;
+        }
 
-    public void GetHit(float damage)
+        playerstate = PlayerState.Idle;
+        anim.SetBool("battle", false);
+        sword.SetActive(false);
+    }
+
+    public void GetHit(int damage)
     {
         if (hp <= 0)
         {

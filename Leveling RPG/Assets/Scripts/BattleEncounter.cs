@@ -60,7 +60,6 @@ public class BattleEncounter : MonoBehaviour
             if (Random.Range(0, encouterPercent) == 0)
             {
                 SceneChanger.instance.SceneChangeStart();
-
                 LastPlayerStanding();
 
                 yield return new WaitForSeconds(0.5f);
@@ -72,7 +71,7 @@ public class BattleEncounter : MonoBehaviour
         }
     }
 
-    public void LastPlayerStanding()
+    private void LastPlayerStanding()
     {
         lastPlayerPosition = player.transform.position;
         PlayerPrefs.SetFloat("PlayerX", lastPlayerPosition.x);
@@ -81,7 +80,7 @@ public class BattleEncounter : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public Vector3 LastPlayerStandingLoad()
+    private Vector3 LastPlayerStandingLoad()
     {
         lastPlayerPosition.x = PlayerPrefs.GetFloat("PlayerX");
         lastPlayerPosition.y = PlayerPrefs.GetFloat("PlayerY");

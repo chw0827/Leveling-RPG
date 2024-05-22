@@ -29,13 +29,13 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         SceneManager.sceneLoaded += NowSceneReport; 
-        SceneManager.sceneLoaded += BattleSceneReady;  
     }
 
     private void Start()
     {
         pc = player.GetComponent<PlayerController>();
         moneyDisplay.text = $"{moneyHave}";
+        SceneManager.sceneLoaded += BattleSceneReady;  
     }
 
     private void Update()
@@ -61,10 +61,12 @@ public class GameManager : MonoBehaviour
         if (scene.name == "Battle")
         {
             uI.SetActive(false);
+            pc.BattleModeSet(scene.name);
         }
         else
         {
             uI.SetActive(true);
+            pc.BattleModeSet(scene.name);
         }
     }
 }
