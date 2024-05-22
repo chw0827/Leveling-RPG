@@ -36,9 +36,21 @@ public class EnemyState : MonoBehaviour
         anim.SetTrigger("attack");
     }
 
-    public void GetHit(int damage)
+    public void GetHit(int damage, out bool alive)
     {
         anim.SetTrigger("getHit");
         hp -= damage;
+        alive = true;
+
+        if (hp <= 0)
+        {
+            Death();
+            alive = false;
+        }
+    }
+
+    void Death()
+    {
+        anim.SetBool("death", true);
     }
 }

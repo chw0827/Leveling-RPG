@@ -17,10 +17,10 @@ public class BattleManager : MonoBehaviour
     bool playerAlive;
 
     GameObject player;
-    PlayerController pc;
+    PlayerController pC;
 
-    public GameObject bear;
-    EnemyState bearStat;
+    public GameObject enemy;
+    EnemyState eS;
 
     public Transform playerStand;
     public Transform enemyStand;
@@ -49,7 +49,7 @@ public class BattleManager : MonoBehaviour
         UnitSetting();
         UIUpdate();
 
-        battleLog.text = $"{bearStat.unitName}이(가) 나타났다!";
+        battleLog.text = $"{eS.unitName}이(가) 나타났다!";
 
         yield return new WaitForSeconds(2.5f);
         WhosTurnNow();
@@ -58,22 +58,23 @@ public class BattleManager : MonoBehaviour
     void UnitSetting()
     {
         player = GameManager.instance.player;
-        pc = GameManager.instance.pc;
+        pC = GameManager.instance.pc;
+
         player.transform.position = playerStand.position;
         player.transform.rotation = Quaternion.LookRotation(Vector3.back);
 
-        bearStat = bear.GetComponent<EnemyState>();
-        Instantiate(bear).transform.position = enemyStand.position;
-        bear.transform.rotation = Quaternion.LookRotation(Vector3.forward);
+        eS = enemy.GetComponent<EnemyState>();
+        Instantiate(enemy).transform.position = enemyStand.position;
+        enemy.transform.rotation = Quaternion.LookRotation(Vector3.forward);
     }
 
     void UIUpdate()
     {
-        PlayerHpBar.value = pc.hp / pc.maxHp;
-        playerLv.text = $"Lv {pc.level}";
-        playerHpCount.text = $"HP : {pc.hp}";
-        playerName.text = $"이름 : {pc.characterName}";
-        playerAttackP.text = $"공격력 : {pc.attackP}";
+        PlayerHpBar.value = pC.hp / pC.maxHp;
+        playerLv.text = $"Lv {pC.level}";
+        playerHpCount.text = $"HP : {pC.hp}";
+        playerName.text = $"이름 : {pC.characterName}";
+        playerAttackP.text = $"공격력 : {pC.attackP}";
     }
 
     public void PlayerAttack()
@@ -104,10 +105,10 @@ public class BattleManager : MonoBehaviour
         if (battleState != BattleState.Playerturn)
         {
             battleState = BattleState.Playerturn;
-            battleLog.text = $"{pc.characterName}의 차례.\n무엇을 할까?";
+            battleLog.text = $"{pC.characterName}의 차례.\n무엇을 할까?";
             return;
         }
         battleState = BattleState.Enemyturn;
-        battleLog.text = $"{bearStat.unitName}의 차례.";
+        battleLog.text = $"{eS.unitName}의 차례.";
     }
 }

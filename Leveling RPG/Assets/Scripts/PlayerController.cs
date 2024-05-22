@@ -89,17 +89,18 @@ public class PlayerController : MonoBehaviour
         sword.SetActive(false);
     }
 
-    public void GetHit(int damage)
+    public void GetHit(int damage, out bool alive)
     {
-        if (hp <= 0)
-        {
-            Death();
-            return;
-        }
-
         playerstate = PlayerState.Hit;
         anim.SetTrigger("getHit");
         hp -= damage;
+        alive = true;
+
+        if (hp <= 0)
+        {
+            Death(); 
+            alive = false;   
+        }
     }
 
     public void Death()
