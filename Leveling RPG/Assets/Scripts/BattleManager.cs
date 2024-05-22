@@ -15,6 +15,8 @@ public class BattleManager : MonoBehaviour
     public BattleState battleState;
     bool enemyAlive;
     bool playerAlive;
+    int damage;
+    float hitTiming;
 
     GameObject player;
     PlayerController pC;
@@ -77,11 +79,67 @@ public class BattleManager : MonoBehaviour
         playerAttackP.text = $"공격력 : {pC.attackP}";
     }
 
-    public void PlayerAttack()
+    void EnemyTurnAttack()
+    {
+        if (battleState == BattleState.Playerturn)
+            return;
+        StartCoroutine(EnemyAttack());
+    }
+
+    IEnumerator EnemyAttack()
+    {
+        yield return new WaitForSeconds(1f);
+
+        eS.Attack(out damage, out hitTiming);
+        battleLog.text = $"{eS.unitName}의 공격!\n";
+
+        yield return new WaitForSeconds(hitTiming);
+        pC.GetHit(damage, out playerAlive);
+        battleLog.text += $"{damage}의 대미지!";
+
+        yield return new WaitForSeconds(1f);
+        if (!playerAlive)
+        {
+            battleLog.text = $"{pC.characterName}은(는) 쓰러졌다...\n" +
+                $"{pC.characterName}은(는) 전투에서 패배했다...";
+            battleState = BattleState.Defeat;
+        }
+        else if (playerAlive)
+        {
+            battleState = BattleState.Playerturn;
+            WhosTurnNow();
+        }
+    }
+
+    public void PlayerAttackBtn()
     {
         if (battleState == BattleState.Enemyturn)
             return;
-        
+        StartCoroutine(PlayerAttack());
+    }
+
+    IEnumerator PlayerAttack()
+    {
+        battleState = BattleState.Enemyturn;
+        pC.Attack(out damage, out hitTiming);
+        battleLog.text = $"{pC.characterName}의 공격!\n";
+
+        yield return new WaitForSeconds(hitTiming);
+        eS.GetHit(damage, out enemyAlive);
+        battleLog.text += $"{damage}의 대미지!";
+
+        yield return new WaitForSeconds(1f);
+        if (!enemyAlive)
+        {
+            battleLog.text = $"{eS.unitName}은(는) 힘이 다했다.\n" +
+                $"{pC.characterName}의 승리!";
+            battleState = BattleState.Win;
+        }
+        else if (enemyAlive)
+        {
+            WhosTurnNow();
+            EnemyTurnAttack();
+        }
     }
 
     public void BattleRun()

@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class EnemyState : MonoBehaviour
 {
     public Animator anim;
-    public Canvas enemyCanvas;
     public TMP_Text levelTxt;
     public TMP_Text unitNameTxt;
     public Slider unitHpSdr;
@@ -31,8 +30,10 @@ public class EnemyState : MonoBehaviour
         unitHpSdr.value = hp / maxHp;
     }
 
-    public void Attack()
+    public void Attack(out int attackP, out float hitTiming)
     {
+        attackP = this.attackP;
+        hitTiming = 0.6f;
         anim.SetTrigger("attack");
     }
 

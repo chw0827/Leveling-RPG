@@ -89,6 +89,14 @@ public class PlayerController : MonoBehaviour
         sword.SetActive(false);
     }
 
+    public void Attack(out int attackP, out float hitTiming)
+    {
+        attackP = this.attackP;
+        hitTiming = 0.6f;
+        playerstate = PlayerState.Attack;
+        anim.SetTrigger("attack");
+    }
+
     public void GetHit(int damage, out bool alive)
     {
         playerstate = PlayerState.Hit;
