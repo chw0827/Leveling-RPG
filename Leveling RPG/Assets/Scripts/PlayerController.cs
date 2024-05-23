@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     public void Attack(out int attackP, out float hitTiming)
     {
         attackP = this.attackP;
-        hitTiming = 0.6f;
+        hitTiming = 1f;
         playerstate = PlayerState.Attack;
         anim.SetTrigger("attack");
     }

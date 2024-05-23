@@ -21,7 +21,8 @@ public class BattleManager : MonoBehaviour
     GameObject player;
     PlayerController pC;
 
-    public GameObject enemy;
+    public GameObject enemySource;
+    GameObject enemy;
     EnemyState eS;
 
     public Transform playerStand;
@@ -54,7 +55,7 @@ public class BattleManager : MonoBehaviour
         battleLog.text = $"{eS.unitName}이(가) 나타났다!";
 
         yield return new WaitForSeconds(2.5f);
-        WhosTurnNow();
+        PlayersTurnNow();
     }
 
     void UnitSetting()
@@ -65,9 +66,11 @@ public class BattleManager : MonoBehaviour
         player.transform.position = playerStand.position;
         player.transform.rotation = Quaternion.LookRotation(Vector3.back);
 
+        enemy = Instantiate(enemySource, enemyStand.position, Quaternion.LookRotation(Vector3.forward));
         eS = enemy.GetComponent<EnemyState>();
-        Instantiate(enemy).transform.position = enemyStand.position;
-        enemy.transform.rotation = Quaternion.LookRotation(Vector3.forward);
+
+        playerAlive = true;
+        enemyAlive = true; 
     }
 
     void UIUpdate()
@@ -81,8 +84,6 @@ public class BattleManager : MonoBehaviour
 
     void EnemyTurnAttack()
     {
-        if (battleState == BattleState.Playerturn)
-            return;
         StartCoroutine(EnemyAttack());
     }
 
@@ -106,8 +107,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (playerAlive)
         {
-            battleState = BattleState.Playerturn;
-            WhosTurnNow();
+            PlayersTurnNow();
         }
     }
 
@@ -115,6 +115,7 @@ public class BattleManager : MonoBehaviour
     {
         if (battleState == BattleState.Enemyturn)
             return;
+
         StartCoroutine(PlayerAttack());
     }
 
@@ -137,13 +138,15 @@ public class BattleManager : MonoBehaviour
         }
         else if (enemyAlive)
         {
-            WhosTurnNow();
             EnemyTurnAttack();
         }
     }
 
     public void BattleRun()
     {
+        if (battleState == BattleState.Enemyturn || !playerAlive)
+            return;
+
         StartCoroutine(PantsRun());
     }
 
@@ -158,15 +161,12 @@ public class BattleManager : MonoBehaviour
         SceneManager.LoadScene(GameManager.instance.beforeSceneName);
     }
 
-    void WhosTurnNow()
+    void PlayersTurnNow()
     {
         if (battleState != BattleState.Playerturn)
         {
             battleState = BattleState.Playerturn;
             battleLog.text = $"{pC.characterName}의 차례.\n무엇을 할까?";
-            return;
         }
-        battleState = BattleState.Enemyturn;
-        battleLog.text = $"{eS.unitName}의 차례.";
     }
 }

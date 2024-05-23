@@ -2835,7 +2835,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 3734775969355451150}
-  enemyCanvas: {fileID: 0}
   levelTxt: {fileID: 663030794}
   unitNameTxt: {fileID: 1870405557}
   unitHpSdr: {fileID: 742282295077399757}
@@ -2843,7 +2842,7 @@ MonoBehaviour:
   level: 1
   attackP: 12
   maxHp: 100
-  hp: 90
+  hp: 100
   price: 100
 --- !u!114 &3021941211617173439
 MonoBehaviour:
