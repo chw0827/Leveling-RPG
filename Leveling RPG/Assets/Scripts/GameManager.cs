@@ -38,11 +38,6 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded += BattleSceneReady;  
     }
 
-    private void Update()
-    {
-        MoneyUpdate();
-    }
-
     public void MoneyUpdate()
     {
         moneyDisplay.text = $"{moneyHave}";

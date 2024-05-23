@@ -25,6 +25,9 @@ public class BattleManager : MonoBehaviour
     GameObject enemy;
     EnemyState eS;
 
+    public Button[] playerActBtn;
+    bool playerActBtnSetActive = true;
+
     public Transform playerStand;
     public Transform enemyStand;
 
@@ -55,7 +58,7 @@ public class BattleManager : MonoBehaviour
         battleLog.text = $"{eS.unitName}이(가) 나타났다!";
 
         yield return new WaitForSeconds(2.5f);
-        PlayersTurnNow();
+        WhosTurnNow();
     }
 
     void UnitSetting()
@@ -107,7 +110,8 @@ public class BattleManager : MonoBehaviour
         }
         else if (playerAlive)
         {
-            PlayersTurnNow();
+            WhosTurnNow();
+            PlayerActBtnSetActive();
         }
     }
 
@@ -121,7 +125,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PlayerAttack()
     {
-        battleState = BattleState.Enemyturn;
+        PlayerActBtnSetActive();
         pC.Attack(out damage, out hitTiming);
         battleLog.text = $"{pC.characterName}의 공격!\n";
 
@@ -138,6 +142,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (enemyAlive)
         {
+            WhosTurnNow();
             EnemyTurnAttack();
         }
     }
@@ -161,12 +166,35 @@ public class BattleManager : MonoBehaviour
         SceneManager.LoadScene(GameManager.instance.beforeSceneName);
     }
 
-    void PlayersTurnNow()
+    void WhosTurnNow()
     {
         if (battleState != BattleState.Playerturn)
         {
             battleState = BattleState.Playerturn;
             battleLog.text = $"{pC.characterName}의 차례.\n무엇을 할까?";
+            return;
         }
+
+        battleState = BattleState.Enemyturn;
+        battleLog.text = $"{eS.unitName}의 차례.";
+    }
+
+    void PlayerActBtnSetActive()
+    {
+        if (playerActBtnSetActive)
+        {
+            for (int i = 0; i < playerActBtn.Length; i++)
+            {
+                playerActBtn[i].enabled = false;
+            }
+            playerActBtnSetActive = false;
+            return;
+        }
+
+        for (int i = 0; i < playerActBtn.Length; i++)
+        {
+            playerActBtn[i].enabled = true;
+        }
+        playerActBtnSetActive = true;
     }
 }
