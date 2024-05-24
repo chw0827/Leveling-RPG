@@ -17,7 +17,11 @@ public class PlayerController : MonoBehaviour
     private Vector3 look;
 
     public GameObject sword;
-    public int level;
+    private int level = 1;
+    public int Level { get { return level; } set { LevelUpStat(value); } }
+    public int expBar;
+    private int nowExp;
+    public int NowExp { get { return nowExp; } set { ExpCalc(value); } }
     public int attackP;
     public float maxHp;
     public float hp;
@@ -106,7 +110,6 @@ public class PlayerController : MonoBehaviour
 
         if (hp <= 0)
         {
-            Death(); 
             alive = false;   
         }
     }
@@ -115,5 +118,24 @@ public class PlayerController : MonoBehaviour
     {
         playerstate = PlayerState.Dead;
         anim.SetBool("death", true);
+    }
+
+    void LevelUpStat(int levelUp)
+    {
+        level += levelUp;
+        attackP += levelUp * 2;
+        maxHp += levelUp * 6;
+    }
+
+    public void ExpCalc(int plusExp)
+    {
+        nowExp += plusExp;
+
+        if (nowExp >= expBar)
+            do
+            {
+                nowExp -= expBar;
+                Level = 1;
+            } while ((nowExp - expBar) > 0);
     }
 }

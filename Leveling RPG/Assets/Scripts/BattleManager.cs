@@ -7,7 +7,7 @@ using TMPro;
 
 public enum BattleState
 {
-    Start, Playerturn, Enemyturn, Win, Defeat
+    Start, Playerturn, Enemyturn, Win, Defeat, 
 }
 
 public class BattleManager : MonoBehaviour
@@ -17,13 +17,17 @@ public class BattleManager : MonoBehaviour
     bool playerAlive;
     int damage;
     float hitTiming;
+    int totalPrice;
+    int totalExp;
 
     GameObject player;
     PlayerController pC;
+    int playerBehaveCount;
 
     public GameObject enemySource;
     GameObject enemy;
     EnemyState eS;
+    int enemyBehaveCount;
 
     public Button[] playerActBtn;
     bool playerActBtnSetActive = true;
@@ -79,21 +83,17 @@ public class BattleManager : MonoBehaviour
     void UIUpdate()
     {
         PlayerHpBar.value = pC.hp / pC.maxHp;
-        playerLv.text = $"Lv {pC.level}";
+        playerLv.text = $"Lv {pC.Level}";
         playerHpCount.text = $"HP : {pC.hp}";
         playerName.text = $"이름 : {pC.characterName}";
         playerAttackP.text = $"공격력 : {pC.attackP}";
     }
 
-    void EnemyTurnAttack()
-    {
-        StartCoroutine(EnemyAttack());
-    }
-
-    IEnumerator EnemyAttack()
+    IEnumerator EnemyTurn()
     {
         yield return new WaitForSeconds(1f);
 
+        enemyBehaveCount--;
         eS.Attack(out damage, out hitTiming);
         battleLog.text = $"{eS.unitName}의 공격!\n";
 
@@ -110,14 +110,19 @@ public class BattleManager : MonoBehaviour
         }
         else if (playerAlive)
         {
-            WhosTurnNow();
-            PlayerActBtnSetActive();
+            if (enemyBehaveCount >= 1)
+                StartCoroutine(EnemyTurn());
+            else if (enemyBehaveCount <= 0)
+            {
+                WhosTurnNow();
+                PlayerActBtnSetActive();
+            }
         }
     }
 
     public void PlayerAttackBtn()
     {
-        if (battleState == BattleState.Enemyturn)
+        if (battleState != BattleState.Playerturn)
             return;
 
         StartCoroutine(PlayerAttack());
@@ -126,12 +131,18 @@ public class BattleManager : MonoBehaviour
     IEnumerator PlayerAttack()
     {
         PlayerActBtnSetActive();
+        playerBehaveCount--;
         pC.Attack(out damage, out hitTiming);
         battleLog.text = $"{pC.characterName}의 공격!\n";
 
         yield return new WaitForSeconds(hitTiming);
         eS.GetHit(damage, out enemyAlive);
         battleLog.text += $"{damage}의 대미지!";
+            int price;
+            int exp;
+        eS.Death(out price, out exp);
+            totalPrice += price;
+            totalExp += exp;
 
         yield return new WaitForSeconds(1f);
         if (!enemyAlive)
@@ -139,17 +150,23 @@ public class BattleManager : MonoBehaviour
             battleLog.text = $"{eS.unitName}은(는) 힘이 다했다.\n" +
                 $"{pC.characterName}의 승리!";
             battleState = BattleState.Win;
+            pC.NowExp = totalExp;
         }
         else if (enemyAlive)
         {
-            WhosTurnNow();
-            EnemyTurnAttack();
+            if (playerBehaveCount >= 1)
+                PlayerActBtnSetActive();
+            else if (playerBehaveCount <= 0)
+            {
+                WhosTurnNow();
+                StartCoroutine(EnemyTurn());
+            }
         }
     }
 
     public void BattleRun()
     {
-        if (battleState == BattleState.Enemyturn || !playerAlive)
+        if (battleState != BattleState.Playerturn || !playerAlive)
             return;
 
         StartCoroutine(PantsRun());
@@ -157,6 +174,7 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator PantsRun()
     {
+        PlayerActBtnSetActive();
         battleLog.text = "무사히 도망쳤다.";
 
         yield return new WaitForSeconds(1f);
@@ -166,15 +184,22 @@ public class BattleManager : MonoBehaviour
         SceneManager.LoadScene(GameManager.instance.beforeSceneName);
     }
 
+    public void VictoryBattleOut()
+    {
+        SceneManager.LoadScene(GameManager.instance.beforeSceneName);
+    }
+
     void WhosTurnNow()
     {
         if (battleState != BattleState.Playerturn)
         {
+            playerBehaveCount = 1;
             battleState = BattleState.Playerturn;
             battleLog.text = $"{pC.characterName}의 차례.\n무엇을 할까?";
             return;
         }
 
+        enemyBehaveCount = 1;
         battleState = BattleState.Enemyturn;
         battleLog.text = $"{eS.unitName}의 차례.";
     }

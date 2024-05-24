@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         pc = player.GetComponent<PlayerController>();
         moneyDisplay.text = $"{moneyHave}";
-        SceneManager.sceneLoaded += BattleSceneReady;  
+        SceneManager.sceneLoaded += BattleSceneReady;
     }
 
     public void MoneyUpdate()

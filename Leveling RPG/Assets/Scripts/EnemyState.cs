@@ -16,6 +16,7 @@ public class EnemyState : MonoBehaviour
     public int attackP;
     public float maxHp;
     public float hp;
+    public int plusExp;
     public int price;
 
     private void Update()
@@ -45,13 +46,14 @@ public class EnemyState : MonoBehaviour
 
         if (hp <= 0)
         {
-            Death();
             alive = false;
         }
     }
 
-    void Death()
+    public void Death(out int price, out int exp)
     {
+        price = this.price;
+        exp = this.plusExp;
         anim.SetBool("death", true);
     }
 }

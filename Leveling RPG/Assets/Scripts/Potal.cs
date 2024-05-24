@@ -10,7 +10,7 @@ public class Potal : MonoBehaviour
 
     private void Start()
     {
-        nowScene = GameManager.instance.nowSceneName;
+        nowScene = SceneManager.GetActiveScene().name;
 
         if (GameManager.instance.beforeSceneName == "Battle")
             return;

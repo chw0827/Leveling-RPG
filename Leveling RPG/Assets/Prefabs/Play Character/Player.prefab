@@ -1322,7 +1322,7 @@ MonoBehaviour:
   speed: 6
   anim: {fileID: 4457481247628736959}
   sword: {fileID: 8588936176152815175}
-  level: 1
+  expBar: 100
   attackP: 10
   maxHp: 60
   hp: 60
