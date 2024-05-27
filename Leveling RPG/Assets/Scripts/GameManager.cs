@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     public string beforeSceneName;
 
     public TMP_Text moneyDisplay;
-    public int moneyHave;
+    private int money;
+    public int Money { get { return money; } set { MoneyUpdate(value); } }
 
     private void Awake()
     {
@@ -34,18 +35,19 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         pc = player.GetComponent<PlayerController>();
-        moneyDisplay.text = $"{moneyHave}";
+        moneyDisplay.text = $"{money}";
         SceneManager.sceneLoaded += BattleSceneReady;
     }
 
-    public void MoneyUpdate()
+    void MoneyUpdate(int price)
     {
-        moneyDisplay.text = $"{moneyHave}";
-        PlayerPrefs.SetInt("Money", moneyHave);
-        PlayerPrefs.Save();
+        money = price; 
+        moneyDisplay.text = $"{money}";
+        /*PlayerPrefs.SetInt("Money", money);
+        PlayerPrefs.Save();*/
     }
 
-    public void NowSceneReport(Scene scene, LoadSceneMode mode)
+    void NowSceneReport(Scene scene, LoadSceneMode mode)
     {
         beforeSceneName = nowSceneName;
         nowSceneName = scene.name;

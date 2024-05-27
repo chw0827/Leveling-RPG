@@ -19,9 +19,9 @@ public class PlayerController : MonoBehaviour
     public GameObject sword;
     private int level = 1;
     public int Level { get { return level; } set { LevelUpStat(value); } }
-    public int expBar;
-    private int nowExp;
-    public int NowExp { get { return nowExp; } set { ExpCalc(value); } }
+    int expBar = 100;
+    private int exp;
+    public int Exp { get { return exp; } set { ExpCalc(value); } }
     public int attackP;
     public float maxHp;
     public float hp;
@@ -122,20 +122,27 @@ public class PlayerController : MonoBehaviour
 
     void LevelUpStat(int levelUp)
     {
-        level += levelUp;
-        attackP += levelUp * 2;
-        maxHp += levelUp * 6;
+        level = levelUp;
+        attackP = attackP + (levelUp - 1) * 2;
+        maxHp = maxHp + (levelUp - 1) * 6;
+        hp = maxHp;
     }
 
     public void ExpCalc(int plusExp)
     {
-        nowExp += plusExp;
+        exp = plusExp;
+        int totalLvUp = 0;
 
-        if (nowExp >= expBar)
+        if (exp >= expBar)
+        {
             do
             {
-                nowExp -= expBar;
-                Level = 1;
-            } while ((nowExp - expBar) > 0);
+                exp -= expBar;
+                totalLvUp += 1;
+                expBar += expBar / 2;
+            } while ((exp - expBar) >= 0);
+
+            Level += totalLvUp;
+        }
     }
 }

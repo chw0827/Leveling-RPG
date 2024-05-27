@@ -17,8 +17,6 @@ public class BattleManager : MonoBehaviour
     bool playerAlive;
     int damage;
     float hitTiming;
-    int totalPrice;
-    int totalExp;
 
     GameObject player;
     PlayerController pC;
@@ -28,6 +26,7 @@ public class BattleManager : MonoBehaviour
     GameObject enemy;
     EnemyState eS;
     int enemyBehaveCount;
+    int totalPriceMoney;
 
     public Button[] playerActBtn;
     bool playerActBtnSetActive = true;
@@ -138,19 +137,14 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(hitTiming);
         eS.GetHit(damage, out enemyAlive);
         battleLog.text += $"{damage}의 대미지!";
-            int price;
-            int exp;
-        eS.Death(out price, out exp);
-            totalPrice += price;
-            totalExp += exp;
-
+       
         yield return new WaitForSeconds(1f);
         if (!enemyAlive)
         {
             battleLog.text = $"{eS.unitName}은(는) 힘이 다했다.\n" +
                 $"{pC.characterName}의 승리!";
             battleState = BattleState.Win;
-            pC.NowExp = totalExp;
+            totalPriceMoney += eS.price;
         }
         else if (enemyAlive)
         {
@@ -184,8 +178,15 @@ public class BattleManager : MonoBehaviour
         SceneManager.LoadScene(GameManager.instance.beforeSceneName);
     }
 
-    public void VictoryBattleOut()
+    public void VictoryBattleOutBtn()
     {
+        StartCoroutine(VictoryBattleOut());
+    }
+
+    IEnumerator VictoryBattleOut()
+    {
+        SceneChanger.instance.SceneChangeStart();
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(GameManager.instance.beforeSceneName);
     }
 
