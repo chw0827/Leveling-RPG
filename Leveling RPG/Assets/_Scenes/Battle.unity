@@ -1025,6 +1025,8 @@ MonoBehaviour:
   playerStand: {fileID: 1979941875}
   enemyStand: {fileID: 189371707}
   PlayerHpBar: {fileID: 748286375}
+  victoryAnim: {fileID: 1807431607}
+  defeatAnim: {fileID: 555592146}
   battleLog: {fileID: 398635200}
   playerLv: {fileID: 71968765}
   playerHpCount: {fileID: 1235661392}
@@ -3719,7 +3721,7 @@ Animator:
   m_GameObject: {fileID: 1807431605}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2430768a550a484479f8ace24f8f5422, type: 2}
+  m_Controller: {fileID: 9100000, guid: b94e7388ef78f2e44a8eb66b134ce426, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

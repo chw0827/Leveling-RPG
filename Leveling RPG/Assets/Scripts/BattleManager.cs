@@ -25,8 +25,10 @@ public class BattleManager : MonoBehaviour
     public GameObject enemySource;
     GameObject enemy;
     EnemyState eS;
+    int totalEnemyCount;
     int enemyBehaveCount;
     int totalPriceMoney;
+    int totalPlusExp;
 
     public Button[] playerActBtn;
     bool playerActBtnSetActive = true;
@@ -35,6 +37,8 @@ public class BattleManager : MonoBehaviour
     public Transform enemyStand;
 
     public Slider PlayerHpBar;
+    public Animator victoryAnim;
+    public Animator defeatAnim;
 
     public TMP_Text battleLog;
     public TMP_Text playerLv;
@@ -53,14 +57,14 @@ public class BattleManager : MonoBehaviour
         UIUpdate();
     }
 
-    public IEnumerator BattleStart()
+    IEnumerator BattleStart()
     {
         UnitSetting();
         UIUpdate();
 
         battleLog.text = $"{eS.unitName}ÀÌ(°¡) ³ªÅ¸³µ´Ù!";
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
         WhosTurnNow();
     }
 
@@ -73,6 +77,7 @@ public class BattleManager : MonoBehaviour
         player.transform.rotation = Quaternion.LookRotation(Vector3.back);
 
         enemy = Instantiate(enemySource, enemyStand.position, Quaternion.LookRotation(Vector3.forward));
+        totalEnemyCount += 1;
         eS = enemy.GetComponent<EnemyState>();
 
         playerAlive = true;
@@ -141,10 +146,14 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         if (!enemyAlive)
         {
-            battleLog.text = $"{eS.unitName}Àº(´Â) ÈûÀÌ ´ÙÇß´Ù.\n" +
-                $"{pC.characterName}ÀÇ ½Â¸®!";
-            battleState = BattleState.Win;
+            totalPlusExp += eS.plusExp;
             totalPriceMoney += eS.price;
+            battleLog.text = $"{eS.unitName}Àº(´Â) ÈûÀÌ ´ÙÇß´Ù.";
+            totalEnemyCount -= 1;
+            yield return new WaitForSeconds(1.5f);
+
+            if (totalEnemyCount <= 0)
+                PlayerWin();
         }
         else if (enemyAlive)
         {
@@ -222,5 +231,16 @@ public class BattleManager : MonoBehaviour
             playerActBtn[i].enabled = true;
         }
         playerActBtnSetActive = true;
+    }
+
+    void PlayerWin()
+    {
+        battleState = BattleState.Win;
+        GameManager.instance.Money += totalPriceMoney;
+        pC.Exp += totalPlusExp;
+        battleLog.text = $"{pC.characterName}ÀÇ ½Â¸®!\n " +
+            $"{pC.characterName}Àº {totalPriceMoney} °ñµå¸¦ È¹µæÇß´Ù!\n" +
+            $"Ãß°¡·Î {totalPlusExp}ÀÇ °æÇèÄ¡¸¦ È¹µæÇß´Ù!";
+        victoryAnim.SetBool("victory", true);
     }
 }
