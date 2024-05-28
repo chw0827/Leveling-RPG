@@ -8,7 +8,7 @@ public class BattleEncounter : MonoBehaviour
     GameObject player;
     private Vector3 lastPlayerPosition;
 
-    public int encouterPercent;
+    public int encoutercount;
     private Vector3 nowPlayerPosition;
     private Vector3 transPlayerPosition;
     private float playerMoveDistance;
@@ -40,7 +40,7 @@ public class BattleEncounter : MonoBehaviour
 
     IEnumerator RandomEncounter()
     {
-        encouterPercent = 80;
+        encoutercount = 80;
         playerOutCheck = false;
 
         while (!playerOutCheck)
@@ -57,7 +57,7 @@ public class BattleEncounter : MonoBehaviour
 
             nowPlayerPosition = transPlayerPosition;
 
-            if (Random.Range(0, encouterPercent) == 0)
+            if (Random.Range(0, encoutercount) == 0)
             {
                 SceneChanger.instance.SceneChangeStart();
                 LastPlayerStanding();
@@ -67,7 +67,7 @@ public class BattleEncounter : MonoBehaviour
                 playerOutCheck = true;
                 SceneManager.LoadScene("Battle");
             }
-            encouterPercent--;
+            encoutercount--;
         }
     }
 

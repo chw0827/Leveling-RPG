@@ -122,9 +122,9 @@ public class PlayerController : MonoBehaviour
 
     void LevelUpStat(int levelUp)
     {
-        level = levelUp;
-        attackP = attackP + (levelUp - 1) * 2;
-        maxHp = maxHp + (levelUp - 1) * 6;
+        level += levelUp;
+        attackP += levelUp * 2;
+        maxHp += levelUp * 6;
         hp = maxHp;
     }
 
@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
                 expBar += expBar / 2;
             } while ((exp - expBar) >= 0);
 
-            Level += totalLvUp;
+            Level = totalLvUp;
         }
     }
 }

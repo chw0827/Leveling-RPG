@@ -142,7 +142,7 @@ public class BattleManager : MonoBehaviour
         yield return new WaitForSeconds(hitTiming);
         eS.GetHit(damage, out enemyAlive);
         battleLog.text += $"{damage}의 대미지!";
-       
+
         yield return new WaitForSeconds(1f);
         if (!enemyAlive)
         {

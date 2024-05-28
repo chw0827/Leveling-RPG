@@ -2843,7 +2843,7 @@ MonoBehaviour:
   attackP: 12
   maxHp: 30
   hp: 30
-  plusExp: 130
+  plusExp: 1000
   price: 100
 --- !u!114 &3021941211617173439
 MonoBehaviour:
