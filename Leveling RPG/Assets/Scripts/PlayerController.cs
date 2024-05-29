@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public string characterName;
     public float speed;
     public Animator anim;
+    public AudioSource playerSound;
 
     private Vector3 look;
 
@@ -31,7 +32,7 @@ public class PlayerController : MonoBehaviour
         if (GameManager.instance.nowSceneName == "Battle")
             return;
 
-        PlayerMove();   
+        PlayerMove();
     }
 
     private void PlayerMove()
@@ -45,7 +46,6 @@ public class PlayerController : MonoBehaviour
             {
                 look = (Vector3.right * x) + (Vector3.forward * z);
                 transform.rotation = Quaternion.LookRotation(look);
-
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
                 playerstate = PlayerState.Move;
                 anim.SetBool("move", true);

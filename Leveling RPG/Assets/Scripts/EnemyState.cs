@@ -10,6 +10,7 @@ public class EnemyState : MonoBehaviour
     public TMP_Text levelTxt;
     public TMP_Text unitNameTxt;
     public Slider unitHpSdr;
+    public AudioSource enemySound;
 
     public string unitName;
     public int level;

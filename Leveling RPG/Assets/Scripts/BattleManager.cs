@@ -39,6 +39,8 @@ public class BattleManager : MonoBehaviour
     public Slider PlayerHpBar;
     public Animator victoryAnim;
     public Animator defeatAnim;
+    public AudioSource battleBgm;
+    public AudioSource victorySound;
 
     public TMP_Text battleLog;
     public TMP_Text playerLv;
@@ -103,6 +105,7 @@ public class BattleManager : MonoBehaviour
         battleLog.text = $"{eS.unitName}의 공격!\n";
 
         yield return new WaitForSeconds(hitTiming);
+        eS.enemySound.Play();
         pC.GetHit(damage, out playerAlive);
         battleLog.text += $"{damage}의 대미지!";
 
@@ -141,6 +144,7 @@ public class BattleManager : MonoBehaviour
         battleLog.text = $"{pC.characterName}의 공격!\n";
 
         yield return new WaitForSeconds(hitTiming);
+        pC.playerSound.Play();
         eS.GetHit(damage, out enemyAlive);
         battleLog.text += $"{damage}의 대미지!";
 
@@ -237,6 +241,8 @@ public class BattleManager : MonoBehaviour
     void PlayerWin()
     {
         battleState = BattleState.Win;
+        battleBgm.Stop();
+        victorySound.Play();
         GameManager.instance.Money += totalPriceMoney;
         pC.Exp += totalPlusExp;
         battleLog.text = $"{pC.characterName}의 승리!\n " +

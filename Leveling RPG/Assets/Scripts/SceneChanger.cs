@@ -8,6 +8,7 @@ public class SceneChanger : MonoBehaviour
     public static SceneChanger instance;
 
     public Animator anim;
+    public AudioSource sceneChangeSound;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class SceneChanger : MonoBehaviour
     public void SceneChangeStart()
     {
         anim.SetTrigger("sceneEnd");
+        sceneChangeSound.Play();
     }
 
     void SceneChangeEnd(Scene scene, LoadSceneMode mode)
