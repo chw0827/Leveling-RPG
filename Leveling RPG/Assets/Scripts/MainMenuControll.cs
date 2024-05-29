@@ -17,6 +17,12 @@ public class MainMenuControll : MonoBehaviour
     public TMP_Text settingsWarningTxt;
     public TMP_Dropdown dropDown;
 
+    private void Start()
+    {
+        AudioListener.volume = PlayerPrefs.GetFloat("Volume");
+        volumeSld.value = AudioListener.volume;
+    }
+
     public void GameStart()
     {
         if (titleAnim.GetBool("titleUp"))
@@ -51,22 +57,35 @@ public class MainMenuControll : MonoBehaviour
         {
             volumeCancleLine.enabled = false;
             volumeSld.value = 0.1f;
+            AudioListener.volume = volumeSld.value;
+            PlayerPrefs.SetFloat("Volume", volumeSld.value);
+            PlayerPrefs.Save();
         }
         else if (!volumeCancleLine.enabled)
         {
             volumeCancleLine.enabled = true;
             volumeSld.value = 0f;
+            AudioListener.volume = volumeSld.value;
+            PlayerPrefs.SetFloat("Volume", volumeSld.value);
+            PlayerPrefs.Save();
         }
     }
 
     public void VolumeControll()
     {
         if (volumeSld.value == 0f)
+        {
             volumeCancleLine.enabled = true;
+            AudioListener.volume = volumeSld.value;
+        }
         else
+        {
             volumeCancleLine.enabled = false;
+            AudioListener.volume = volumeSld.value;
+        }
 
         PlayerPrefs.SetFloat("Volume", volumeSld.value);
+        PlayerPrefs.Save();
     }
 
     public void DropDownResolution()

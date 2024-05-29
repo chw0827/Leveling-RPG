@@ -4784,7 +4784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5569619504265773485}
   - component: {fileID: 5502134107355567710}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Minimap Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

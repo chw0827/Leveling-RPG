@@ -34,7 +34,7 @@ public class EnemyState : MonoBehaviour
     public void Attack(out int attackP, out float hitTiming)
     {
         attackP = this.attackP;
-        hitTiming = 0.9f;
+        hitTiming = 0.4f;
         anim.SetTrigger("attack");
     }
 

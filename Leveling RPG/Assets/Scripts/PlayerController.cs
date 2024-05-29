@@ -69,11 +69,11 @@ public class PlayerController : MonoBehaviour
         playerstate = PlayerState.Wait;
         anim.SetBool("move", false);
 
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.5f);
 
         transform.rotation = Quaternion.LookRotation(Vector3.forward);
 
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.5f);
 
         playerstate = PlayerState.Idle;
     }
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
     public void Attack(out int attackP, out float hitTiming)
     {
         attackP = this.attackP;
-        hitTiming = 1f;
+        hitTiming = 0.4f;
         playerstate = PlayerState.Attack;
         anim.SetTrigger("attack");
     }
