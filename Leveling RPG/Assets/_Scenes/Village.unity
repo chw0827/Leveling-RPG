@@ -145,11 +145,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.47
+      value: 1.46
       objectReference: {fileID: 0}
     - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20.94
+      value: -20.79
       objectReference: {fileID: 0}
     - target: {fileID: 1236444247376220378, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -183,7 +183,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 954fc7dae860dad4eb8896b4395691f5, type: 3}
 --- !u!1 &338650881 stripped
 GameObject:
@@ -507,7 +508,6 @@ MonoBehaviour:
   nowSceneName: 
   beforeSceneName: 
   moneyDisplay: {fileID: 7569913640143278263}
-  moneyHave: 0
 --- !u!4 &1722079633
 Transform:
   m_ObjectHideFlags: 0

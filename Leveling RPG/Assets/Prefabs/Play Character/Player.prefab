@@ -1225,8 +1225,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1236444247376220378}
   - component: {fileID: 4457481247628736959}
-  - component: {fileID: 6289707153427049814}
-  - component: {fileID: 2413484223406086797}
+  - component: {fileID: -2000424208287323640}
+  - component: {fileID: -3797814781322886396}
   - component: {fileID: 2856209392929459026}
   m_Layer: 0
   m_Name: Player
@@ -1275,7 +1275,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!136 &6289707153427049814
+--- !u!136 &-2000424208287323640
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1285,11 +1285,11 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
---- !u!54 &2413484223406086797
+  m_Center: {x: 0, y: 0.95, z: 0}
+--- !u!54 &-3797814781322886396
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1304,7 +1304,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!114 &2856209392929459026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1322,7 +1322,6 @@ MonoBehaviour:
   speed: 6
   anim: {fileID: 4457481247628736959}
   sword: {fileID: 8588936176152815175}
-  expBar: 100
   attackP: 10
   maxHp: 60
   hp: 60
@@ -4785,7 +4784,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5569619504265773485}
   - component: {fileID: 5502134107355567710}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Minimap Marker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5310,6 +5309,10 @@ PrefabInstance:
     - target: {fileID: 1037715513984232, guid: 259746fbc59909b4eb14377c46a80363, type: 3}
       propertyPath: m_Name
       value: Sword_OH
+      objectReference: {fileID: 0}
+    - target: {fileID: 1037715513984232, guid: 259746fbc59909b4eb14377c46a80363, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1037715513984232, guid: 259746fbc59909b4eb14377c46a80363, type: 3}
       propertyPath: m_IsActive
