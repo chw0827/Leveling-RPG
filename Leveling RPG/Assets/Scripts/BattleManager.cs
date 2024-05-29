@@ -49,6 +49,7 @@ public class BattleManager : MonoBehaviour
     void Awake()
     {
         battleState = BattleState.Start;
+        AudioListener.volume = PlayerPrefs.GetFloat("Volume");
         StartCoroutine(BattleStart());
     }
 

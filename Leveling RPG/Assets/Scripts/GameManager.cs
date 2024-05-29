@@ -34,8 +34,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        AudioListener.volume = PlayerPrefs.GetFloat("Volume");
         pc = player.GetComponent<PlayerController>();
-        moneyDisplay.text = $"{money}";
+        moneyDisplay.text = $"{PlayerPrefs.GetFloat("Money")}";
         SceneManager.sceneLoaded += BattleSceneReady;
     }
 
@@ -43,8 +44,8 @@ public class GameManager : MonoBehaviour
     {
         money = price; 
         moneyDisplay.text = $"{money}";
-        /*PlayerPrefs.SetInt("Money", money);
-        PlayerPrefs.Save();*/
+        PlayerPrefs.SetInt("Money", money);
+        PlayerPrefs.Save();
     }
 
     void NowSceneReport(Scene scene, LoadSceneMode mode)
