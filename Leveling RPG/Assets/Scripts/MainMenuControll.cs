@@ -10,6 +10,7 @@ public class MainMenuControll : MonoBehaviour
     public Animator titleAnim;
     public Animator settingsAnim;
 
+    public Button startBtn;
     public Button settingsBtn;
     public Slider volumeSld;
     public Image volumeCancleLine;
@@ -19,8 +20,11 @@ public class MainMenuControll : MonoBehaviour
 
     private void Start()
     {
-        AudioListener.volume = PlayerPrefs.GetFloat("Volume");
-        volumeSld.value = AudioListener.volume;
+        if (PlayerPrefs.HasKey("Volume"))
+        {
+            AudioListener.volume = PlayerPrefs.GetFloat("Volume");
+            volumeSld.value = PlayerPrefs.GetFloat("Volume");
+        }
     }
 
     public void GameStart()
@@ -99,6 +103,7 @@ public class MainMenuControll : MonoBehaviour
 
     IEnumerator StartGame()
     {
+        startBtn.enabled = false;
         SceneChanger.instance.SceneChangeStart();
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Village");
@@ -130,5 +135,14 @@ public class MainMenuControll : MonoBehaviour
         settingsWarningTxt.enabled = true;
         yield return new WaitForSeconds(2f);
         settingsWarningTxt.enabled = false;
+    }
+
+    public void GameQuit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 }

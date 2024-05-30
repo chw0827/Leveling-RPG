@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class BattleEncounter : MonoBehaviour
 {
     GameObject player;
-    private Vector3 lastPlayerPosition;
 
     public int encoutercount;
     private Vector3 nowPlayerPosition;
@@ -21,7 +20,7 @@ public class BattleEncounter : MonoBehaviour
         if (GameManager.instance.beforeSceneName != "Battle")
             return;
 
-        player.transform.position = LastPlayerStandingLoad();
+        player.transform.position = GameManager.instance.LastPlayerPositionLoad();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,7 +59,7 @@ public class BattleEncounter : MonoBehaviour
             if (Random.Range(0, encoutercount) == 0)
             {
                 SceneChanger.instance.SceneChangeStart();
-                LastPlayerStanding();
+                GameManager.instance.LastPlayerPositionSave();
 
                 yield return new WaitForSeconds(0.5f);
 
@@ -69,23 +68,5 @@ public class BattleEncounter : MonoBehaviour
             }
             encoutercount--;
         }
-    }
-
-    private void LastPlayerStanding()
-    {
-        lastPlayerPosition = player.transform.position;
-        PlayerPrefs.SetFloat("PlayerX", lastPlayerPosition.x);
-        PlayerPrefs.SetFloat("PlayerY", lastPlayerPosition.y);
-        PlayerPrefs.SetFloat("PlayerZ", lastPlayerPosition.z);
-        PlayerPrefs.Save();
-    }
-
-    private Vector3 LastPlayerStandingLoad()
-    {
-        lastPlayerPosition.x = PlayerPrefs.GetFloat("PlayerX");
-        lastPlayerPosition.y = PlayerPrefs.GetFloat("PlayerY");
-        lastPlayerPosition.z = PlayerPrefs.GetFloat("PlayerZ");
-
-        return lastPlayerPosition;
     }
 }

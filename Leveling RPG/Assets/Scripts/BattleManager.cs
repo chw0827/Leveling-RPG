@@ -249,5 +249,6 @@ public class BattleManager : MonoBehaviour
             $"{pC.characterName}¿∫ {totalPriceMoney} ∞ÒµÂ∏¶ »πµÊ«ﬂ¥Ÿ!\n" +
             $"√ﬂ∞°∑Œ {totalPlusExp}¿« ∞Ê«Ëƒ°∏¶ »πµÊ«ﬂ¥Ÿ!";
         victoryAnim.SetBool("victory", true);
+        pC.PlayerStatSave();
     }
 }

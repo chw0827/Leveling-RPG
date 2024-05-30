@@ -27,6 +27,11 @@ public class PlayerController : MonoBehaviour
     public float maxHp;
     public float hp;
 
+    private void Start()
+    {
+        PlayerStatLoad();
+    }
+
     private void FixedUpdate()
     {
         if (GameManager.instance.nowSceneName == "Battle")
@@ -143,6 +148,25 @@ public class PlayerController : MonoBehaviour
             } while ((exp - expBar) >= 0);
 
             Level = totalLvUp;
+        }
+    }
+
+    public void PlayerStatSave()
+    {
+        PlayerPrefs.SetInt("PlayerLv", Level);
+        PlayerPrefs.SetInt("PlayerExp", Exp);
+        PlayerPrefs.SetInt("PlayerExpBar", expBar);
+        PlayerPrefs.SetFloat("PlayerHp", hp);
+    }
+
+    void PlayerStatLoad()
+    {
+        if (PlayerPrefs.HasKey("PlayerLv"))
+        {
+            Level = PlayerPrefs.GetInt("PlayerLv") - 1;
+            exp = PlayerPrefs.GetInt("PlayerExp");
+            expBar = PlayerPrefs.GetInt("PlayerExpBar");
+            hp = PlayerPrefs.GetFloat("PlayerHp");
         }
     }
 }
